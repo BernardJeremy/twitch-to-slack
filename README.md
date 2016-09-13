@@ -3,7 +3,7 @@ Node.JS script sending slack message when selected twitch channel start to strea
 
 ## Features
 - Detect if a twich stream is online
-- Send nptification to a Slack hook if a whatched stream come online
+- Send notification to a Slack webhook if a whatched stream come online
 - Can watch multiple stream channel
 
 ## Installation
