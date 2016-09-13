@@ -1,0 +1,23 @@
+{
+  "name": "twitch-to-slack",
+  "version": "1.0.0",
+  "description": "Node.JS script sending slack message when selected twitch channel start to stream.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BernardJeremy/twitch-to-slack.git"
+  },
+  "author": "BernardJeremy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BernardJeremy/twitch-to-slack/issues"
+  },
+  "homepage": "https://github.com/BernardJeremy/twitch-to-slack#readme",
+  "dependencies": {
+    "request": "^2.69.0",
+    "slack-node": "^0.2.0"
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "twitchAPILink": "https://api.twitch.tv/kraken/streams/",
+  "chaineID": "",
+  "slackHookUrl" : "https://hooks.slack.com/services/...."
+}
