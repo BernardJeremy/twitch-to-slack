@@ -19,3 +19,4 @@ Node.JS script sending slack message when selected twitch channel start to strea
 - `twitchAPILink` : Link to the twich API page (You shouldn't have to change this).
 - `chaineID` : Name of the watched stream (`ogaminglol` in `https://www.twitch.tv/ogaminglol`). Could be a single string or an array of string, to watch multiple stream.
 - `slackHookUrl` :  Link to your Slack incoming-webhooks.
+- `slackHookName` :  Name to display when you will get notified on Slack.

@@ -7,6 +7,7 @@ const Slack = require('slack-node');
 let link = require('./config.json').twitchAPILink;
 let channelID = require('./config.json').chaineID;
 let slackUrl = require('./config.json').slackHookUrl;
+let slackName = require('./config.json').slackHookName;
 
 // Return if parameter is an array
 function isArray(a) {
@@ -36,8 +37,8 @@ function sendSlackMessage(targetChannelID, data) {
   text += data.stream.channel.status + ' (' + data.stream.channel.game + ')' + '\n';
   text += '<' + data.stream.channel.url + '>';
   let msgParameters = {
-    username: 'twitch-to-slack',
-    icon_emoji: 'http://s.jtvnw.net/jtv_user_pictures/hosted_images/GlitchIcon_PurpleonWhite.png',
+    username: slackName,
+    icon_emoji: data.stream.channel.logo,
     text: text,
   };
   let slack = new Slack();
