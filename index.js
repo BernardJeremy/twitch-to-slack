@@ -4,8 +4,9 @@ const request = require('request');
 const Slack = require('slack-node');
 
 // Retrieve config
-let link = require('./config.json').twitchAPILink;
+let twitchAPILink = require('./config.json').twitchAPILink;
 let channelID = require('./config.json').chaineID;
+let clientToken = require('./config.json').clientToken;
 let slackUrl = require('./config.json').slackHookUrl;
 let slackName = require('./config.json').slackHookName;
 
@@ -50,9 +51,14 @@ function sendSlackMessage(targetChannelID, data) {
   });
 }
 
+// Retrieve full Twich API link for a given channelID
+function retrieveApiLink(targetChannelID) {
+  return twitchAPILink + targetChannelID + '?client_id=' + clientToken;
+}
+
 // Check if the given stream is online or not.
 function performOnlineCheck(targetChannelID) {
-  request(link + targetChannelID, function (err, resp, html) {
+  request(retrieveApiLink(targetChannelID), function (err, resp, html) {
     if (err) return console.error(err);
 
     let data = JSON.parse(html);
