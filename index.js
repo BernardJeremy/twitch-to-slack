@@ -34,7 +34,7 @@ function updateSavedData(targetChannelID, newData, savedData) {
 
 // Send the slack message to the config's webhook
 function sendSlackMessage(targetChannelID, data) {
-  let text = data.stream.channel.display_name + ' started to stream : ';
+  let text = '*' + data.stream.channel.display_name + '* started to stream : ';
   text += data.stream.channel.status + ' (' + data.stream.channel.game + ')' + '\n';
   text += '<' + data.stream.channel.url + '>';
   let msgParameters = {
