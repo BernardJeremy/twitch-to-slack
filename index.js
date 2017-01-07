@@ -7,6 +7,7 @@ const Slack = require('slack-node');
 let twitchAPILink = require('./config.json').twitchAPILink;
 let channelID = require('./config.json').chaineID;
 let clientToken = require('./config.json').clientToken;
+let notificationOnStatusChange = require('./config.json').notificationOnStatusChange;
 let slackUrl = require('./config.json').slackHookUrl;
 let slackName = require('./config.json').slackHookName;
 
@@ -26,6 +27,7 @@ function updateSavedData(targetChannelID, newData, savedData) {
     savedData[targetChannelID] = {};
   }
   savedData[targetChannelID].id = newData.stream._id
+  savedData[targetChannelID].status = newData.stream.channel.status
   if (fs.existsSync(getSaveFilename(targetChannelID))) {
     fs.unlinkSync(getSaveFilename(targetChannelID));
   }
@@ -33,8 +35,8 @@ function updateSavedData(targetChannelID, newData, savedData) {
 }
 
 // Send the slack message to the config's webhook
-function sendSlackMessage(targetChannelID, data) {
-  let text = '*' + data.stream.channel.display_name + '* started to stream : ';
+function sendSlackMessage(targetChannelID, data, baseText) {
+  let text = '*' + data.stream.channel.display_name + '*' + baseText;
   text += data.stream.channel.status + ' (' + data.stream.channel.game + ')' + '\n';
   text += '<' + data.stream.channel.url + '>';
   let msgParameters = {
@@ -69,11 +71,14 @@ function performOnlineCheck(targetChannelID) {
     }
 
     if (data.stream !== null) {
-      if (savedData.length == 0 || typeof savedData[targetChannelID] === 'undefined' || savedData[targetChannelID].id != data.stream._id) {
+      if (savedData.length === 0 || typeof savedData[targetChannelID] === 'undefined' || savedData[targetChannelID].id !== data.stream._id) {
         updateSavedData(targetChannelID, data, savedData);
-        sendSlackMessage(targetChannelID, data);
+        sendSlackMessage(targetChannelID, data, ' started to stream : ');
+      } else if (notificationOnStatusChange && savedData[targetChannelID].status !== data.stream.channel.status) {
+        updateSavedData(targetChannelID, data, savedData);
+        sendSlackMessage(targetChannelID, data, ' changed its status : ');
       }
-    }
+    };
   });
 }
 
