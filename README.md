@@ -21,5 +21,6 @@ Node.JS script that sends Slack messages when specified twitch channels start to
 - `clientToken` : Application's client_id, requested by Twich API. You have to [register](https://www.twitch.tv/kraken/oauth2/clients/new) your application to get one.
 - `chaineID` : The Twitch usernames of the streams to watch. Can be a either single string (e.g. `"ogaminglol"`) or an array of strings (e.g. `[ "ogaminglol", "examplestreamfun" ]`).
 - `notificationOnStatusChange` : Set to `true` or `false` to enable or to disable the notification if the status (name) of the stream change.
-- `slackHookUrl` :  Link to your Slack incoming webhook.
-- `slackHookName` :  The name that the script will use to identify itself when posting to Slack.
+- `notificationOnGoingOffline` : Set to `true` or `false` to enable or to disable the notification if a watched stream goes offline.
+- `slackHookUrl` :  Link to your Slack incoming webhooks.
+- `slackHookName` :  The name that the script will use to identify itself when posting to Slack
