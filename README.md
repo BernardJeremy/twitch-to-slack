@@ -1,25 +1,26 @@
 # twitch-to-slack
-Node.JS script sending slack message when selected twitch channel start to stream
+Node.JS script that sends Slack messages when specified twitch channels start to stream
 
 ## Features
-- Detect if a twich stream is online
-- Send notification to a Slack webhook if a whatched stream come online or if the stream's status change
-- Can watch multiple stream channel
+- Detect if one or more specified Twitch streams are online
+- Send notification to a Slack webhook when a watched stream comes online
+- Can optionally send notifications if an online stream changes its status
 
 ## Installation
-- Simply clone this depot anywhere on your server.
-- Copy [config.json.exemple](https://github.com/BernardJeremy/twitch-to-slack/blob/master/config.json.example) file into a `config.json` file.
-- Perform `npm install` command.
-- Install a [incoming-webhooks](https://api.slack.com/incoming-webhooks) on your Slack.
-- Add your link of the Slack incoming-webhooks in the `config.json` file.
-- Add your wanted reference in the `config.json` file.
-- Optional (but recommended) : Install a task scheduler (like `CRON`) to run the script regularly.
+- Clone this repo anywhere on your server.
+- With your cloned copy of this repo as your current working directory:
+    - Run the command `npm install`.
+    - Copy the file `config.json.example` to a new file named `config.json`.
+- Install a new [incoming webhook](https://api.slack.com/incoming-webhooks) on your Slack.
+- [Register a new Twitch application](https://www.twitch.tv/kraken/oauth2/clients/new) in order to obtain a new Twitch client token.
+- Configure the application by updating `config.json` as described below.
+- Optional (but recommended) : Install a task scheduler (like `cron`) to run the script regularly.
 
 ## Configuration
-- `twitchAPILink` : Link to the twich API page (You shouldn't have to change this).
+- `twitchAPILink` : Link to the twich API page (you shouldn't have to change this).
 - `clientToken` : Application's client_id, requested by Twich API. You have to [register](https://www.twitch.tv/kraken/oauth2/clients/new) your application to get one.
-- `chaineID` : Name of the watched stream (`ogaminglol` in `https://www.twitch.tv/ogaminglol`). Could be a single string or an array of string, to watch multiple stream.
+- `chaineID` : The Twitch usernames of the streams to watch. Can be a either single string (e.g. `"ogaminglol"`) or an array of strings (e.g. `[ "ogaminglol", "examplestreamfun" ]`).
 - `notificationOnStatusChange` : Set to `true` or `false` to enable or to disable the notification if the status (name) of the stream change.
 - `notificationOnGoingOffline` : Set to `true` or `false` to enable or to disable the notification if a watched stream goes offline.
-- `slackHookUrl` :  Link to your Slack incoming-webhooks.
-- `slackHookName` :  Name to display when you will get notified on Slack.
+- `slackHookUrl` :  Link to your Slack incoming webhooks.
+- `slackHookName` :  The name that the script will use to identify itself when posting to Slack
