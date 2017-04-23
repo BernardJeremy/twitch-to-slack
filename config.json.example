@@ -3,6 +3,7 @@
   "clientToken": "somerandomtoken",
   "chaineID": "",
   "notificationOnStatusChange": false,
+  "notificationOnGoingOffline": false,
   "slackHookUrl" : "https://hooks.slack.com/services/....",
   "slackHookName" : "twitch-to-slack"
 }
